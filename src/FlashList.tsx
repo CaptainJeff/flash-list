@@ -1,12 +1,3 @@
-import React from "react";
-import {
-  View,
-  RefreshControl,
-  LayoutChangeEvent,
-  NativeSyntheticEvent,
-  StyleSheet,
-  NativeScrollEvent,
-} from "react-native";
 import {
   BaseItemAnimator,
   DataProvider,
@@ -15,33 +6,42 @@ import {
   RecyclerListViewProps,
   WindowCorrectionConfig,
 } from "recyclerlistview";
-import StickyContainer, { StickyContainerProps } from "recyclerlistview/sticky";
-
-import AutoLayoutView from "./native/auto-layout/AutoLayoutView";
-import CellContainer from "./native/cell-container/CellContainer";
-import { PureComponentWrapper } from "./PureComponentWrapper";
-import GridLayoutProviderWithProps from "./GridLayoutProviderWithProps";
-import CustomError from "./errors/CustomError";
-import ExceptionList from "./errors/ExceptionList";
-import WarningList from "./errors/Warnings";
-import ViewabilityManager from "./viewability/ViewabilityManager";
-import {
-  FlashListProps,
-  RenderTarget,
-  RenderTargetOptions,
-} from "./FlashListProps";
-import {
-  getCellContainerPlatformStyles,
-  getFooterContainer,
-  getItemAnimator,
-  PlatformConfig,
-} from "./native/config/PlatformHelper";
 import {
   ContentStyleExplicit,
   getContentContainerPadding,
   hasUnsupportedKeysInContentContainerStyle,
   updateContentStyle,
 } from "./utils/ContentContainerUtils";
+import {
+  FlashListProps,
+  RenderTarget,
+  RenderTargetOptions,
+} from "./FlashListProps";
+import {
+  LayoutChangeEvent,
+  NativeScrollEvent,
+  NativeSyntheticEvent,
+  RefreshControl,
+  StyleSheet,
+  View,
+} from "react-native";
+import {
+  PlatformConfig,
+  getCellContainerPlatformStyles,
+  getFooterContainer,
+  getItemAnimator,
+} from "./native/config/PlatformHelper";
+import StickyContainer, { StickyContainerProps } from "recyclerlistview/sticky";
+
+import AutoLayoutView from "./native/auto-layout/AutoLayoutView";
+import CellContainer from "./native/cell-container/CellContainer";
+import CustomError from "./errors/CustomError";
+import ExceptionList from "./errors/ExceptionList";
+import GridLayoutProviderWithProps from "./GridLayoutProviderWithProps";
+import { PureComponentWrapper } from "./PureComponentWrapper";
+import React from "react";
+import ViewabilityManager from "./viewability/ViewabilityManager";
+import WarningList from "./errors/Warnings";
 
 interface StickyProps extends StickyContainerProps {
   children: any;
@@ -171,7 +171,7 @@ class FlashList<T> extends React.PureComponent<
         newState.numColumns,
         nextProps
       );
-      // RLV retries to reposition the first visible item on layout provider change.
+      // RLV retries too reposition the first visible item on layout provider change.
       // It's not required in our case so we're disabling it
       newState.layoutProvider.shouldRefreshWithAnchoring = false;
     }
